@@ -9,9 +9,11 @@ public class Tests
     {
     }
 
+    // Passing Check / Test project, which references logic project
     [Test]
     public void Test1()
     {
         Assert.Pass();
     }
+    
 }
