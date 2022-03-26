@@ -22,6 +22,7 @@ public class Program
     if (obj.LoginCheck(username, PINCode)== true)
     {
     Menus s = new Menus();
+    Console.WriteLine("---------ACCEPTED---------");
     s.PrincipalMenu();
     }
 
@@ -36,6 +37,7 @@ public class Menus
 {
     public void PrincipalMenu()
     {
+        
         Console.WriteLine("Hi Marco");
         Console.WriteLine("Select an option.....");
         Console.WriteLine("1. Account Actvity, Balances, Updates       2. Cash Withdrawal");
@@ -72,6 +74,10 @@ public class Menus
     }
     public void SelectionAccountActivity()
     {
+        OptionMenu ob = new OptionMenu();
+        ob.AccountActivity();
+        Console.WriteLine("Would you like to make another transaction --- Yes or No  y/n");
+        Check(Console.ReadLine());
 
     }
     public void CashWithdrawal()
@@ -94,5 +100,20 @@ public class Menus
     public void Deposit()
     {
 
+    }
+    public bool Check(string check)
+    {
+    
+        if (check == "y")
+        {
+            Menus s = new Menus();
+            s.PrincipalMenu();
+            return true;
+
+        }
+        else {
+            return false;
+        }
+        
     }
 }
