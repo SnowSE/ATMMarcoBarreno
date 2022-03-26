@@ -3,20 +3,20 @@ public class Program
 {
     public static void Main (string[]args){
 
-   
 
     Console.WriteLine("-------SNOW COLLEGE BANK-------");
 
     Console.WriteLine("Insert your username");
 
+    //Declaring username and PIN
     string username; 
 
     username = Console.ReadLine();
-    
 
     Console.WriteLine("Insert the PIN");
 
     int PINCode = (Int32.Parse(Console.ReadLine()));
+    //Object for LoginCheck of username and PIN inheirtance from Class1
     Class1 obj = new Class1();
 
     if (obj.LoginCheck(username, PINCode)== true)
@@ -35,6 +35,7 @@ public class Program
 }
 public class Menus
 {
+    //Principal Menu Method
     public void PrincipalMenu()
     {
         
@@ -44,6 +45,7 @@ public class Menus
         Console.WriteLine("3. Payment & Transfers                      4. Set my favourite Withdrawal");
         Console.WriteLine("5. Change PIN                               6. Deposit");
         int Select = Int32.Parse(Console.ReadLine());
+        // Menu options & connection to their methods
         switch (Select)
         {
             case 1:
@@ -72,12 +74,21 @@ public class Menus
 
         }
     }
+    // Option Methods
     public void SelectionAccountActivity()
     {
         OptionMenu ob = new OptionMenu();
         ob.AccountActivity();
         Console.WriteLine("Would you like to make another transaction --- Yes or No  y/n");
-        Check(Console.ReadLine());
+        try{
+
+            Check(Console.ReadLine());
+
+        }catch(Exception e){
+
+            Console.WriteLine(e.Message);
+        }
+        
 
     }
     public void CashWithdrawal()
@@ -101,6 +112,7 @@ public class Menus
     {
 
     }
+    // Continue & Check Method, Each Option need to have this until close the program
     public bool Check(string check)
     {
     
