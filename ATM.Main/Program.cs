@@ -93,6 +93,22 @@ public class Menus
     }
     public void CashWithdrawal()
     {
+        WithdrawalPayments eq = new WithdrawalPayments();
+        eq.Balance = 800;
+        Console.WriteLine("Insert the amount you want to withdraw in cash");
+        eq.ATMCash = Convert.ToDecimal(Console.ReadLine());
+        eq.GetError();
+        eq.GetEnumerator();
+        if (eq.Errors == "Error")
+        {
+            Console.WriteLine("your balance is not enough");
+        }
+        if(eq.Errors == "No error")
+        {
+            Console.WriteLine("-------Processing--------");
+            Console.WriteLine("--------Complete---------");
+            Console.WriteLine("Retire your money");
+        }
 
     }
     public void PayTrans()
