@@ -94,23 +94,23 @@ public class Menus
     public void CashWithdrawal()
     {
         WithdrawalPayments eq = new WithdrawalPayments();
-        eq.Balance = 800;
+        decimal Balance = 800;
         Console.WriteLine("Insert the amount you want to withdraw in cash");
-        eq.ATMCash = Convert.ToDecimal(Console.ReadLine());
-        eq.GetError();
-        eq.GetEnumerator();
-        if (eq.Errors == "Error")
+        decimal ATMCash = Convert.ToDecimal(Console.ReadLine());
+        eq.GetEnumerator(Balance,ATMCash);
+        if (eq.Check == eq.GetError() && Balance < ATMCash)
         {
             Console.WriteLine("your balance is not enough");
-        }
-        if(eq.Errors == "No error")
-        {
+        } 
+        if (eq.Check == eq.GetBalance() && Balance > ATMCash)
+     {
             Console.WriteLine("-------Processing--------");
             Console.WriteLine("--------Complete---------");
             Console.WriteLine("Retire your money");
-        }
-
+     }
     }
+
+    
     public void PayTrans()
     {
 
@@ -128,6 +128,7 @@ public class Menus
     {
 
     }
+    
     // Continue & Check Method, Each Option need to have this until close the program
     public bool Check(string check)
     {
