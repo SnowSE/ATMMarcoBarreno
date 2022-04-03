@@ -1,15 +1,17 @@
 ﻿namespace ATM;
 using System.Collections.Generic;
 using System.Collections;
+using System;
+
 // Interface for the Login
 public interface IEnumerable<T>
 {
-    
+
 }
 public interface DataLogin
 {
     bool LoginCheck(string username, int PINCode);
-    
+
 }
 // Interface for the Options
 public interface options
@@ -28,83 +30,109 @@ public class Class1 : DataLogin
             return true;
 
         }
-        else{
+        else
+        {
 
             return false;
 
         }
     }
     // Balance method, knowing the first balance
-    public int Balance(int pay){
+    public int Balance(int pay)
+    {
         int balance = 800;
         balance = balance - pay;
         return balance;
     }
-    
+
+
 }
 // Inheritance from the class and from the interface
 public class OptionMenu : Class1, options
 {
 
-public void AccountActivity()
+    public void AccountActivity()
     {
         Console.WriteLine("-----ACCOUNT ACTIVITY--------------------");
         Console.WriteLine("Maverick...................." + " -" + 20);
         Console.WriteLine("Snow ATM...................." + " -" + 200);
         Console.WriteLine("Walmart....................." + " -" + 60);
-        int pay = 20 + 200 +60;
+        int pay = 20 + 200 + 60;
         Console.WriteLine("Actual Balance -------- " + Balance(pay) + "--------");
-        
-        
-    }
-}
-public class Withdrawal 
-{
-    private Withdrawal _Balance;
-    
-    public Withdrawal Balance{
-        get {return _Balance;}
-        set {_Balance = value;}
+
 
     }
+}
+
+public class Withdrawal
+{
+    private Withdrawal _Balance;
+
+    public Withdrawal Balance
+    {
+        get { return _Balance; }
+        set { _Balance = value; }
+
+    }
+
 
 }
 public class WithdrawalPayments : IEnumerable<Withdrawal>
 {
-    public decimal ATMCash;
     public decimal Balance;
+    public decimal ATMCash;
+
     public decimal result;
-    public string Errors;
+    public string _Errors;
+
     public Withdrawal? Balance1;
-    
+
     public Withdrawal? Error;
+    public Withdrawal Check;
+
     public Withdrawal GetError()
     {
+
         return Error;
     }
     public Withdrawal GetBalance()
     {
-        Balance = Balance - ATMCash;
+
         return Balance1;
-    
+
 
     }
-    public IEnumerator<Withdrawal> GetEnumerator()
+    public IEnumerator<Withdrawal> GetEnumerator(decimal Balance, decimal ATMCash)
     {
-       if (Balance < ATMCash)
-       {
-           Errors = "Error";
-           yield return GetError();
-       }
-       if(Balance > ATMCash){
+        if (Balance < ATMCash)
+        {
+            Check = GetError();
 
-       Balance = Balance - ATMCash;
-       result = Balance;
-       Errors = "No error";
-       yield return GetBalance();
-       
-       }
+
+        }
+
+        if (Balance > ATMCash)
+        {
+            Balance = Balance - ATMCash;
+            result = Balance;
+            Check = GetBalance();
+
+
+        }
+        yield return Check;
     }
-    
+    public string Mistake
+    {
+        get
+        {
+            return _Errors;
+
+        }
+        set
+        {
+            _Errors = value;
+        }
+    }
+
 
 }
