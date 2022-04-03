@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Collections;
 using System;
 
-// Interface for the Login
+// Interface for IEnumerable with <T>
 public interface IEnumerable<T>
 {
 
 }
+// Interface for the Login
 public interface DataLogin
 {
     bool LoginCheck(string username, int PINCode);
@@ -37,6 +38,12 @@ public class Class1 : DataLogin
 
         }
     }
+
+    public object LoginCheck()
+    {
+        throw new NotImplementedException();
+    }
+
     // Balance method, knowing the first balance
     public int Balance(int pay)
     {
@@ -63,11 +70,13 @@ public class OptionMenu : Class1, options
 
     }
 }
-
+// Class with withdrawal
 public class Withdrawal
 {
+    // Balance set
     private Withdrawal _Balance;
 
+    // return from balance
     public Withdrawal Balance
     {
         get { return _Balance; }
@@ -77,6 +86,7 @@ public class Withdrawal
 
 
 }
+// IEnumerable Inheritance with <Withdrawal>
 public class WithdrawalPayments : IEnumerable<Withdrawal>
 {
     public decimal Balance;
@@ -88,13 +98,15 @@ public class WithdrawalPayments : IEnumerable<Withdrawal>
     public Withdrawal? Balance1;
 
     public Withdrawal? Error;
+    //Check for ATM 
     public Withdrawal Check;
-
+    //Check if there is an error
     public Withdrawal GetError()
     {
 
         return Error;
     }
+    //Check for the balance
     public Withdrawal GetBalance()
     {
 
@@ -102,6 +114,7 @@ public class WithdrawalPayments : IEnumerable<Withdrawal>
 
 
     }
+    //Get the enumerator referencing to IEnumerator with the two decimal arguments
     public IEnumerator<Withdrawal> GetEnumerator(decimal Balance, decimal ATMCash)
     {
         if (Balance < ATMCash)
