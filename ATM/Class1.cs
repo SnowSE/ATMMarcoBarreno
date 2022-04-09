@@ -11,7 +11,7 @@ public interface IEnumerable<T>
 // Interface for the Login
 public interface DataLogin
 {
-    bool LoginCheck(string username, int PINCode);
+    bool LoginCheck(string username, string PINCode);
 
 }
 // Interface for the Options
@@ -23,10 +23,22 @@ public interface options
 // Inheirtance for the interface to this class
 public class Class1 : DataLogin
 {
+
+    public string ChangePIN { get; set; }
+
     // Login check with the username and Code
-    public bool LoginCheck(string username, int PINCode)
+    public bool LoginCheck(string username, string PINCode)
     {
-        if (username == "Marco Andres Barreno" && PINCode == 233702)
+        switch (ChangePIN)
+        {
+            default:
+            ChangePIN = "233702";
+            break;
+        }
+        
+        var prime = Tuple.Create("Marco Andres Barreno", ChangePIN);
+
+        if (username == prime.Item1 && PINCode == prime.Item2)
         {
             return true;
 
@@ -38,6 +50,12 @@ public class Class1 : DataLogin
 
         }
     }
+    public void ChangingPin()
+    {
+        Console.WriteLine("Change the new PIN");
+        ChangePIN = Console.ReadLine();
+    }
+
 
     public object LoginCheck()
     {

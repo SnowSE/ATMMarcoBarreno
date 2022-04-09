@@ -42,6 +42,7 @@ namespace ATM
 
             }
         }
+       
         // Option Methods
         public void SelectionAccountActivity()
         {
@@ -107,14 +108,14 @@ namespace ATM
             //object to payment refering to the abstract class 
             e.Payment(balance, amount);
         }
-
         public void SetMyFavouriteWithdrawal()
         {
 
         }
         public void ChangePIN()
         {
-
+            Class1 cs = new Class1 ();
+            cs.ChangingPin();
         }
         public void Deposit()
         {
