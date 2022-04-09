@@ -16,7 +16,7 @@ public class Program
 
         Console.WriteLine("Insert the PIN");
 
-        int PINCode = (Int32.Parse(Console.ReadLine()));
+        string PINCode = Console.ReadLine();
         //Object for LoginCheck of username and PIN inheirtance from Class1
         Class1 obj = new Class1();
 
