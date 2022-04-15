@@ -1,4 +1,6 @@
+
 namespace ATM
+
 {
     public class Menus
     {
@@ -7,10 +9,13 @@ namespace ATM
         {
 
             Console.WriteLine("Hi Marco");
+            Console.WriteLine("");
             Console.WriteLine("Select an option.....");
-            Console.WriteLine("1. Account Actvity, Balances, Updates       2. Cash Withdrawal");
-            Console.WriteLine("3. Payment & Transfers                      4. Set my favourite Withdrawal");
-            Console.WriteLine("5. Change PIN                               6. Deposit");
+            Console.WriteLine("1. Account Actvity, Balances, Updates             2. Cash Withdrawal");
+            Console.WriteLine("");
+            Console.WriteLine("3. Payment & Transfers                            4. Set my favourite Withdrawal");
+            Console.WriteLine("");
+            Console.WriteLine("5. Change PIN                                     6. Deposit");
             int Select = Int32.Parse(Console.ReadLine());
             // Menu options & connection to their methods
             switch (Select)
@@ -42,7 +47,7 @@ namespace ATM
 
             }
         }
-       
+
         // Option Methods
         public void SelectionAccountActivity()
         {
@@ -81,7 +86,19 @@ namespace ATM
                 Console.WriteLine("-------Processing--------");
                 Console.WriteLine("--------Complete---------");
                 Console.WriteLine("Retire your money");
+            }
+            Console.WriteLine("Would you like to make another transaction --- Yes or No  y/n");
 
+            try
+            {
+
+                Check(Console.ReadLine());
+
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e.Message);
             }
         }
 
@@ -94,19 +111,55 @@ namespace ATM
             //Insert the data of the account you want to transfer
             //Insert routing number
             Console.WriteLine("Insert the routing number");
-            int routing = Int32.Parse(Console.ReadLine());
-            e.RoutingNumber(routing);
+            try
+            {
+                int routing = Int32.Parse(Console.ReadLine());
+                e.RoutingNumber(routing);
+            }
+            catch
+            {
+                Console.WriteLine("Insert a valid routing number");
+
+            }
+
             //Insert account number
             Console.WriteLine("Insert the account number");
-            int account = Int32.Parse(Console.ReadLine());
-            e.AccountNumber(account);
+            try
+            {
+                int account = Int32.Parse(Console.ReadLine());
+                e.AccountNumber(account);
+            }
+            catch
+            {
+                Console.WriteLine("Insert a valid account number");
+            }
             //predefined balance
             int balance = 800;
             //The amount to transfer
             Console.WriteLine("Insert the amount you want to transfer");
-            int amount = Int32.Parse(Console.ReadLine());
-            //object to payment refering to the abstract class 
-            e.Payment(balance, amount);
+            try
+            {
+                int amount = Int32.Parse(Console.ReadLine());
+                //object to payment refering to the abstract class 
+                e.Payment(balance, amount);
+            }
+            catch
+            {
+                Console.WriteLine("Insert a valid amount");
+            }
+            Console.WriteLine("Would you like to make another transaction --- Yes or No  y/n");
+
+            try
+            {
+
+                Check(Console.ReadLine());
+
+            }
+            catch (Exception m)
+            {
+
+                Console.WriteLine(m.Message);
+            }
         }
         public void SetMyFavouriteWithdrawal()
         {
@@ -114,8 +167,9 @@ namespace ATM
         }
         public void ChangePIN()
         {
-            Class1 cs = new Class1 ();
+            Class1 cs = new Class1();
             cs.ChangingPin();
+            Initialize();
         }
         public void Deposit()
         {
@@ -126,6 +180,19 @@ namespace ATM
             int deposit = Int32.Parse(Console.ReadLine());
             bc1(deposit);
             Console.WriteLine("This is your new balance " + bc1(deposit));
+            Console.WriteLine("Would you like to make another transaction --- Yes or No  y/n");
+
+            try
+            {
+
+                Check(Console.ReadLine());
+
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e.Message);
+            }
 
 
         }
@@ -134,6 +201,7 @@ namespace ATM
             int balance = 800;
             balance = balance + p;
             return balance;
+
         }
 
         // Continue & Check Method, Each Option need to have this until close the program
@@ -149,11 +217,43 @@ namespace ATM
             }
             else
             {
+                Console.WriteLine("------------------------THANKS FOR USING SNOW BANK---------------------");
                 return false;
             }
 
+
         }
+
+        public void Initialize()
+        {
+            Console.WriteLine("-------SNOW COLLEGE BANK-------");
+
+            Console.WriteLine("Insert your username");
+
+            //Declaring username and PIN
+            string username;
+
+            username = Console.ReadLine();
+
+            Console.WriteLine("Insert the PIN");
+
+            string PINCode = Console.ReadLine();
+            //Object for LoginCheck of username and PIN inheirtance from Class1
+            Class1 obj = new Class1();
+
+            if (obj.LoginCheck(username, PINCode) == true)
+            {
+                Menus s = new Menus();
+                Console.WriteLine("---------ACCEPTED---------");
+                s.PrincipalMenu();
+            }
+
+            if (obj.LoginCheck(username, PINCode) == false)
+            {
+                Console.WriteLine("Invalid Credentials...................");
+            }
+        }
+
+
     }
-
-
 }

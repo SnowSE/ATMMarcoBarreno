@@ -24,16 +24,13 @@ public interface options
 public class Class1 : DataLogin
 {
 
-    public string ChangePIN { get; set; }
-
+    public static string ChangePIN = "";
     // Login check with the username and Code
     public bool LoginCheck(string username, string PINCode)
     {
-        switch (ChangePIN)
+        if (ChangePIN.Equals(""))
         {
-            default:
             ChangePIN = "233702";
-            break;
         }
         
         var prime = Tuple.Create("Marco Andres Barreno", ChangePIN);
@@ -52,8 +49,19 @@ public class Class1 : DataLogin
     }
     public void ChangingPin()
     {
-        Console.WriteLine("Change the new PIN");
-        ChangePIN = Console.ReadLine();
+        Console.WriteLine("Change the new PIN (must be a Pin of 6 Digits)");
+        string firstTryTipingPin = Console.ReadLine();
+        Console.WriteLine("Re-enter the PIN Changed");
+        string confirmationPIN = Console.ReadLine();
+        if(firstTryTipingPin.Equals(confirmationPIN) )
+        {
+            ChangePIN = firstTryTipingPin;
+            Console.WriteLine("-----------------------Your Pin Has Been Changed-------------------");
+        }
+        else
+        {
+            Console.WriteLine("----------Error in the confirmation of your credentials----------------");
+        }
     }
 
 
@@ -152,18 +160,5 @@ public class WithdrawalPayments : IEnumerable<Withdrawal>
         }
         yield return Check;
     }
-    public string Mistake
-    {
-        get
-        {
-            return _Errors;
-
-        }
-        set
-        {
-            _Errors = value;
-        }
-    }
-
-
+    
 }

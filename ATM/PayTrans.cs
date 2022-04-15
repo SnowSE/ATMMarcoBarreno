@@ -25,7 +25,7 @@ namespace ATM
                 // balance if the balance is enough
                 balance = balance - amount;
                 Console.WriteLine("--------------Processing-----------");
-                Console.WriteLine("Transfer" + amount + "to the account");
+                Console.WriteLine("Transfer " + amount + " to the account");
                 Console.WriteLine("Your new balance is " + balance);
                 return balance;
             }
