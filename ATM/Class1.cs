@@ -32,7 +32,7 @@ public class Class1 : DataLogin
         {
             ChangePIN = "233702";
         }
-        
+
         var prime = Tuple.Create("Marco Andres Barreno", ChangePIN);
 
         if (username == prime.Item1 && PINCode == prime.Item2)
@@ -49,19 +49,23 @@ public class Class1 : DataLogin
     }
     public void ChangingPin()
     {
+
         Console.WriteLine("Change the new PIN (must be a Pin of 6 Digits)");
         string firstTryTipingPin = Console.ReadLine();
         Console.WriteLine("Re-enter the PIN Changed");
         string confirmationPIN = Console.ReadLine();
-        if(firstTryTipingPin.Equals(confirmationPIN) )
+
+        if (firstTryTipingPin.Equals(confirmationPIN))
         {
             ChangePIN = firstTryTipingPin;
             Console.WriteLine("-----------------------Your Pin Has Been Changed-------------------");
         }
         else
         {
+
             Console.WriteLine("----------Error in the confirmation of your credentials----------------");
         }
+
     }
 
 
@@ -160,5 +164,5 @@ public class WithdrawalPayments : IEnumerable<Withdrawal>
         }
         yield return Check;
     }
-    
+
 }

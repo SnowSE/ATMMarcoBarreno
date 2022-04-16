@@ -4,6 +4,15 @@ namespace ATM
 {
     public class Menus
     {
+
+        private int balance = 800;
+
+        public int Balance
+        {
+            get { return balance; }
+            set { Balance = value; }
+        }
+
         //Principal Menu Method
         public void PrincipalMenu()
         {
@@ -73,15 +82,15 @@ namespace ATM
         {
 
             WithdrawalPayments eq = new WithdrawalPayments();
-            decimal Balance = 800;
+
             Console.WriteLine("Insert the amount you want to withdraw in cash");
             decimal ATMCash = Convert.ToDecimal(Console.ReadLine());
-            eq.GetEnumerator(Balance, ATMCash);
-            if (eq.Check == eq.GetError() && Balance < ATMCash)
+            eq.GetEnumerator(balance, ATMCash);
+            if (eq.Check == eq.GetError() && balance < ATMCash)
             {
                 Console.WriteLine("your balance is not enough");
             }
-            if (eq.Check == eq.GetBalance() && Balance > ATMCash)
+            if (eq.Check == eq.GetBalance() && balance > ATMCash)
             {
                 Console.WriteLine("-------Processing--------");
                 Console.WriteLine("--------Complete---------");
@@ -134,7 +143,7 @@ namespace ATM
                 Console.WriteLine("Insert a valid account number");
             }
             //predefined balance
-            int balance = 800;
+
             //The amount to transfer
             Console.WriteLine("Insert the amount you want to transfer");
             try
@@ -174,10 +183,10 @@ namespace ATM
         public void Deposit()
         {
             //Deposit code objecting to delegate
-
-            BalanceChange bc1 = new BalanceChange(MakeADeposit);
             Console.WriteLine("Insert the amount you want to deposit");
             int deposit = Int32.Parse(Console.ReadLine());
+            
+            BalanceChange bc1 = new BalanceChange(MakeADeposit);
             bc1(deposit);
             Console.WriteLine("This is your new balance " + bc1(deposit));
             Console.WriteLine("Would you like to make another transaction --- Yes or No  y/n");
@@ -196,11 +205,12 @@ namespace ATM
 
 
         }
-        public static int MakeADeposit(int p)
+        public int MakeADeposit(int p)
         {
-            int balance = 800;
-            balance = balance + p;
-            return balance;
+
+            int depostBalance = balance + p;
+
+            return depostBalance;
 
         }
 
