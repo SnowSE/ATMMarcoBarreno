@@ -6,10 +6,7 @@ public class Program
         Menus s = new Menus();
         s.Initialize();
     }
-        
+}
 
 
-    }
-    
-    
 

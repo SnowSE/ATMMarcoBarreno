@@ -104,26 +104,17 @@ public class OptionMenu : Class1, options
 public class Withdrawal
 {
     // Balance set
-    private Withdrawal _Balance;
 
-    // return from balance
-    public Withdrawal Balance
-    {
-        get { return _Balance; }
-        set { _Balance = value; }
-
-    }
 
 
 }
 // IEnumerable Inheritance with <Withdrawal>
 public class WithdrawalPayments : IEnumerable<Withdrawal>
 {
-    public decimal Balance;
-    public decimal ATMCash;
+
 
     public decimal result;
-    public string _Errors;
+
 
     public Withdrawal? Balance1;
 

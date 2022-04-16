@@ -4,27 +4,30 @@ namespace ATM
 {
     public class Menus
     {
+        WithdrawalPayments eq = new WithdrawalPayments();
+        Balances balanceObject = new Balances();
 
-        private int balance = 800;
-
-        public int Balance
+        public static int initialValue = 800;
+        public int Balance()
         {
-            get { return balance; }
-            set { Balance = value; }
+            balanceObject.balance = initialValue;
+            return balanceObject.balance;
         }
+
+
+
 
         //Principal Menu Method
         public void PrincipalMenu()
         {
-
             Console.WriteLine("Hi Marco");
             Console.WriteLine("");
             Console.WriteLine("Select an option.....");
             Console.WriteLine("1. Account Actvity, Balances, Updates             2. Cash Withdrawal");
             Console.WriteLine("");
-            Console.WriteLine("3. Payment & Transfers                            4. Set my favourite Withdrawal");
+            Console.WriteLine("3. Payment & Transfers                            4. Change PIN  ");
             Console.WriteLine("");
-            Console.WriteLine("5. Change PIN                                     6. Deposit");
+            Console.WriteLine("5. Deposit");
             int Select = Int32.Parse(Console.ReadLine());
             // Menu options & connection to their methods
             switch (Select)
@@ -43,14 +46,10 @@ namespace ATM
                     break;
 
                 case 4:
-                    SetMyFavouriteWithdrawal();
-                    break;
-
-                case 5:
                     ChangePIN();
                     break;
 
-                case 6:
+                case 5:
                     Deposit();
                     break;
 
@@ -81,16 +80,16 @@ namespace ATM
         public void CashWithdrawal()
         {
 
-            WithdrawalPayments eq = new WithdrawalPayments();
+
 
             Console.WriteLine("Insert the amount you want to withdraw in cash");
             decimal ATMCash = Convert.ToDecimal(Console.ReadLine());
-            eq.GetEnumerator(balance, ATMCash);
-            if (eq.Check == eq.GetError() && balance < ATMCash)
+            eq.GetEnumerator(Balance(), ATMCash);
+            if (eq.Check == eq.GetError() && Balance() < ATMCash)
             {
                 Console.WriteLine("your balance is not enough");
             }
-            if (eq.Check == eq.GetBalance() && balance > ATMCash)
+            if (eq.Check == eq.GetBalance() && Balance() > ATMCash)
             {
                 Console.WriteLine("-------Processing--------");
                 Console.WriteLine("--------Complete---------");
@@ -150,7 +149,7 @@ namespace ATM
             {
                 int amount = Int32.Parse(Console.ReadLine());
                 //object to payment refering to the abstract class 
-                e.Payment(balance, amount);
+                e.Payment(Balance(), amount);
             }
             catch
             {
@@ -170,10 +169,7 @@ namespace ATM
                 Console.WriteLine(m.Message);
             }
         }
-        public void SetMyFavouriteWithdrawal()
-        {
 
-        }
         public void ChangePIN()
         {
             Class1 cs = new Class1();
@@ -185,7 +181,7 @@ namespace ATM
             //Deposit code objecting to delegate
             Console.WriteLine("Insert the amount you want to deposit");
             int deposit = Int32.Parse(Console.ReadLine());
-            
+
             BalanceChange bc1 = new BalanceChange(MakeADeposit);
             bc1(deposit);
             Console.WriteLine("This is your new balance " + bc1(deposit));
@@ -208,7 +204,7 @@ namespace ATM
         public int MakeADeposit(int p)
         {
 
-            int depostBalance = balance + p;
+            int depostBalance = Balance() + p;
 
             return depostBalance;
 
