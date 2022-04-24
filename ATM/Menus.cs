@@ -91,10 +91,10 @@ namespace ATM
                 Check(Console.ReadLine());
 
             }
-            catch (Exception e)
+            catch 
             {
 
-                Console.WriteLine(e.Message);
+                Console.WriteLine("Enter a invalid number");
             }
 
 
