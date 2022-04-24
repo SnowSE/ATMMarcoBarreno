@@ -2,19 +2,16 @@ using NUnit.Framework;
 
 namespace ATM.Tests;
 
+
 public class Tests
 {
-    [SetUp]
-    public void Setup()
-    {
-    }
-
+    private Menus? menu;
     // Passing Check / Test project, which references logic project
     [Test]
-    public void Test1()
+    public void TestPassingCredentials()
     {
-        Assert.Pass();
+        var class1 = new Class1();
+        var menus= new Menus();
+        Assert.IsTrue(class1.LoginCheck("Marco Andres Barreno", "233702"), menus.username = ("Marco Andres Barreno"), menus.PINCode = ("233702"));
     }
-   
-
 }

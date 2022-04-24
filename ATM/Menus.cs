@@ -8,15 +8,37 @@ namespace ATM
         Balances balanceObject = new Balances();
 
         public static int initialValue = 800;
+        public static int Select;
+        public string username;
+        public string PINCode;
         public int Balance()
         {
             balanceObject.balance = initialValue;
             return balanceObject.balance;
         }
+        public void Initialize()
+        {
+            Console.WriteLine("-------SNOW COLLEGE BANK-------");
+            Console.WriteLine("Insert your username");
+            //Declaring username and PIN
+            username = Console.ReadLine();
+            Console.WriteLine("Insert the PIN");
+            PINCode = Console.ReadLine();
+            //Object for LoginCheck of username and PIN inheirtance from Class1
+            Class1 obj = new Class1();
 
+            if (obj.LoginCheck(username, PINCode) == true)
+            {
+                Menus s = new Menus();
+                Console.WriteLine("---------ACCEPTED---------");
+                s.PrincipalMenu();
+            }
 
-
-
+            if (obj.LoginCheck(username, PINCode) == false)
+            {
+                Console.WriteLine("Invalid Credentials...................");
+            }
+        }
         //Principal Menu Method
         public void PrincipalMenu()
         {
@@ -28,7 +50,7 @@ namespace ATM
             Console.WriteLine("3. Payment & Transfers                            4. Change PIN  ");
             Console.WriteLine("");
             Console.WriteLine("5. Deposit");
-            int Select = Int32.Parse(Console.ReadLine());
+            Select = Int32.Parse(Console.ReadLine());
             // Menu options & connection to their methods
             switch (Select)
             {
@@ -55,7 +77,6 @@ namespace ATM
 
             }
         }
-
         // Option Methods
         public void SelectionAccountActivity()
         {
@@ -186,7 +207,6 @@ namespace ATM
             bc1(deposit);
             Console.WriteLine("This is your new balance " + bc1(deposit));
             Console.WriteLine("Would you like to make another transaction --- Yes or No  y/n");
-
             try
             {
 
@@ -230,36 +250,7 @@ namespace ATM
 
         }
 
-        public void Initialize()
-        {
-            Console.WriteLine("-------SNOW COLLEGE BANK-------");
-
-            Console.WriteLine("Insert your username");
-
-            //Declaring username and PIN
-            string username;
-
-            username = Console.ReadLine();
-
-            Console.WriteLine("Insert the PIN");
-
-            string PINCode = Console.ReadLine();
-            //Object for LoginCheck of username and PIN inheirtance from Class1
-            Class1 obj = new Class1();
-
-            if (obj.LoginCheck(username, PINCode) == true)
-            {
-                Menus s = new Menus();
-                Console.WriteLine("---------ACCEPTED---------");
-                s.PrincipalMenu();
-            }
-
-            if (obj.LoginCheck(username, PINCode) == false)
-            {
-                Console.WriteLine("Invalid Credentials...................");
-            }
-        }
-
+        
 
     }
 }
