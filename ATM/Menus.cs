@@ -8,9 +8,10 @@ namespace ATM
         Balances balanceObject = new Balances();
 
         public static int initialValue = 800;
-        public static int Select;
+        public int Select;
         public string username;
         public string PINCode;
+        public decimal ATMCash;
         public int Balance()
         {
             balanceObject.balance = initialValue;
@@ -104,7 +105,7 @@ namespace ATM
 
 
             Console.WriteLine("Insert the amount you want to withdraw in cash");
-            decimal ATMCash = Convert.ToDecimal(Console.ReadLine());
+            ATMCash = Convert.ToDecimal(Console.ReadLine());
             eq.GetEnumerator(Balance(), ATMCash);
             if (eq.Check == eq.GetError() && Balance() < ATMCash)
             {
@@ -236,8 +237,7 @@ namespace ATM
 
             if (check == "y")
             {
-                Menus s = new Menus();
-                s.PrincipalMenu();
+                PrincipalMenu();
                 return true;
 
             }
@@ -245,9 +245,8 @@ namespace ATM
             {
                 Console.WriteLine("------------------------THANKS FOR USING SNOW BANK---------------------");
                 return false;
-            }
-
-
+            
+             }
         }
 
         

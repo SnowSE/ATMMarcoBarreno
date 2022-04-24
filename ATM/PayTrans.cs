@@ -7,7 +7,7 @@ namespace ATM
 
     }
     //abstract class use
-    public abstract class PayTrans : PaymentTransaction
+    public class PayTrans : PaymentTransaction
     {
         // virtual use for payment
         public virtual int Payment(int balance, int amount)
