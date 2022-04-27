@@ -6,54 +6,95 @@ namespace ATM
     {
         WithdrawalPayments eq = new WithdrawalPayments();
         Balances balanceObject = new Balances();
+        Class1 obj = new Class1();
 
         public static int initialValue = 800;
-        public int Select;
-        public string username;
-        public string PINCode;
-        public decimal ATMCash;
+        public int SelectOption;
+        public string username { get; set; }
+        public string PINCode { get; set; }
+        public int ATMCash;
+        public static string userset;
+        public string usernameCheck { get; set; }
+        public string PINCodeCheck { get; set; }
         public int Balance()
         {
             balanceObject.balance = initialValue;
             return balanceObject.balance;
+        }
+
+
+        public void AccountCheck()
+        {
+            Console.WriteLine("----------------WELCOME TO SNOW BANK----------------");
+            Console.WriteLine("Do you have an account");
+            Console.WriteLine("If yes type 'y' if you don't have an acoount type  'n'");
+            string selection = Console.ReadLine();
+            if (selection == "y")
+            {
+
+                Initialize();
+            }
+            if (selection == "n")
+            {
+                Console.WriteLine("Insert your username");
+                username = Console.ReadLine();
+                userset = username;
+                
+                Console.WriteLine("Insert your PIN");
+                PINCode = Console.ReadLine();
+                Initialize();
+            }
+
         }
         public void Initialize()
         {
             Console.WriteLine("-------SNOW COLLEGE BANK-------");
             Console.WriteLine("Insert your username");
             //Declaring username and PIN
-            username = Console.ReadLine();
+            usernameCheck = Console.ReadLine();
             Console.WriteLine("Insert the PIN");
-            PINCode = Console.ReadLine();
+            PINCodeCheck = Console.ReadLine();
             //Object for LoginCheck of username and PIN inheirtance from Class1
-            Class1 obj = new Class1();
 
-            if (obj.LoginCheck(username, PINCode) == true)
+
+            if (obj.LoginCheck(usernameCheck, PINCodeCheck, username, PINCode) == true)
             {
                 Menus s = new Menus();
-                Console.WriteLine("---------ACCEPTED---------");
+                Console.WriteLine("------------ACCEPTED-------------");
                 s.PrincipalMenu();
             }
 
-            if (obj.LoginCheck(username, PINCode) == false)
+            if (obj.LoginCheck(usernameCheck, PINCodeCheck, username, PINCode) == false)
             {
                 Console.WriteLine("Invalid Credentials...................");
+                Console.WriteLine("Do you want to try again? y/n.");
+                string check = Console.ReadLine();
+                if (check == "y")
+                {
+                    Initialize();
+
+                }
+                if (check == "n")
+                {
+                    Exit();
+
+                }
             }
         }
         //Principal Menu Method
         public void PrincipalMenu()
         {
-            Console.WriteLine("Hi Marco");
+            Console.WriteLine("Hi" + username);
             Console.WriteLine("");
             Console.WriteLine("Select an option.....");
             Console.WriteLine("1. Account Actvity, Balances, Updates             2. Cash Withdrawal");
             Console.WriteLine("");
             Console.WriteLine("3. Payment & Transfers                            4. Change PIN  ");
             Console.WriteLine("");
-            Console.WriteLine("5. Deposit");
-            Select = Int32.Parse(Console.ReadLine());
+            Console.WriteLine("5. Deposit                                        6. Exit");
+            SelectOption = Int32.Parse(Console.ReadLine());
             // Menu options & connection to their methods
-            switch (Select)
+            switch (SelectOption)
             {
 
                 case 1:
@@ -75,6 +116,9 @@ namespace ATM
                 case 5:
                     Deposit();
                     break;
+                case 6:
+                    Exit();
+                    break;
 
             }
         }
@@ -91,7 +135,7 @@ namespace ATM
                 Check(Console.ReadLine());
 
             }
-            catch 
+            catch
             {
 
                 Console.WriteLine("Enter a invalid number");
@@ -105,7 +149,7 @@ namespace ATM
 
 
             Console.WriteLine("Insert the amount you want to withdraw in cash");
-            ATMCash = Convert.ToDecimal(Console.ReadLine());
+            ATMCash = Convert.ToInt32(Console.ReadLine());
             eq.GetEnumerator(Balance(), ATMCash);
             if (eq.Check == eq.GetError() && Balance() < ATMCash)
             {
@@ -116,6 +160,7 @@ namespace ATM
                 Console.WriteLine("-------Processing--------");
                 Console.WriteLine("--------Complete---------");
                 Console.WriteLine("Retire your money");
+                Console.WriteLine("Your balance is ... " + obj.Balance(Balance(), ATMCash));
             }
             Console.WriteLine("Would you like to make another transaction --- Yes or No  y/n");
 
@@ -131,8 +176,6 @@ namespace ATM
                 Console.WriteLine(e.Message);
             }
         }
-
-
         public void PayTrans()
         {
             //Transaction part
@@ -194,8 +237,8 @@ namespace ATM
 
         public void ChangePIN()
         {
-            Class1 cs = new Class1();
-            cs.ChangingPin();
+            PINCode = obj.ChangingPin(PINCode);
+            username = obj.UsernameSetChangingPin(username, userset);
             Initialize();
         }
         public void Deposit()
@@ -222,6 +265,10 @@ namespace ATM
 
 
         }
+        public void Exit()
+        {
+            Console.WriteLine("Thank you for using snow bank");
+        }
         public int MakeADeposit(int p)
         {
 
@@ -245,11 +292,11 @@ namespace ATM
             {
                 Console.WriteLine("------------------------THANKS FOR USING SNOW BANK---------------------");
                 return false;
-            
-             }
+
+            }
         }
 
-        
+
 
     }
 }

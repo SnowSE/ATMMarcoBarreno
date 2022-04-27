@@ -10,6 +10,7 @@ namespace ATM
     public class PayTrans : PaymentTransaction
     {
         // virtual use for payment
+        
         public virtual int Payment(int balance, int amount)
         {
             //object for Transaction

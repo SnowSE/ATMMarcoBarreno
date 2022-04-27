@@ -11,7 +11,7 @@ public interface IEnumerable<T>
 // Interface for the Login
 public interface DataLogin
 {
-    bool LoginCheck(string username, string PINCode);
+    bool LoginCheck(string usernameCheck, string PINCodeCheck, string username, string PINCode);
 
 }
 // Interface for the Options
@@ -26,14 +26,12 @@ public class Class1 : DataLogin
 
     public static string ChangePIN = "";
     // Login check with the username and Code
-    public bool LoginCheck(string username, string PINCode)
-    {
-        if (ChangePIN.Equals(""))
-        {
-            ChangePIN = "233702";
-        }
 
-        var prime = Tuple.Create("Marco Andres Barreno", ChangePIN);
+    public bool LoginCheck(string usernameCheck, string PINCodeCheck, string username, string PINCode)
+    {
+
+
+        var prime = Tuple.Create(usernameCheck, PINCodeCheck);
 
         if (username == prime.Item1 && PINCode == prime.Item2)
         {
@@ -47,7 +45,7 @@ public class Class1 : DataLogin
 
         }
     }
-    public void ChangingPin()
+    public string ChangingPin(string ChangePIN)
     {
 
         Console.WriteLine("Change the new PIN (must be a Pin of 6 Digits)");
@@ -58,14 +56,21 @@ public class Class1 : DataLogin
         if (firstTryTipingPin.Equals(confirmationPIN))
         {
             ChangePIN = firstTryTipingPin;
-            Console.WriteLine("-----------------------Your Pin Has Been Changed-------------------");
+            Console.WriteLine("-----------------------Your Pin Has Been Changed------------------- is " + ChangePIN);
+            return ChangePIN;
         }
         else
         {
-
             Console.WriteLine("----------Error in the confirmation of your credentials----------------");
+            ChangingPin(ChangePIN);
+            return ChangePIN;
         }
 
+    }
+    public string UsernameSetChangingPin(string username, string userset)
+    {
+        username = userset;
+        return username;
     }
 
 
@@ -75,27 +80,34 @@ public class Class1 : DataLogin
     }
 
     // Balance method, knowing the first balance
-    public int Balance(int pay)
+    public int Balance(int balance, int pay)
     {
-        int balance = 800;
+
         balance = balance - pay;
         return balance;
     }
 
+    public void CreatingAccount(string username, string PINCode)
+    {
+
+
+    }
 
 }
 // Inheritance from the class and from the interface
 public class OptionMenu : Class1, options
 {
+    Menus m = new Menus();
 
     public void AccountActivity()
     {
+
         Console.WriteLine("-----ACCOUNT ACTIVITY--------------------");
         Console.WriteLine("Maverick...................." + " -" + 20);
         Console.WriteLine("Snow ATM...................." + " -" + 200);
         Console.WriteLine("Walmart....................." + " -" + 60);
         int pay = 20 + 200 + 60;
-        Console.WriteLine("Actual Balance -------- " + Balance(pay) + "--------");
+        Console.WriteLine("Actual Balance -------- " + Balance(m.Balance(), pay) + "--------");
 
 
     }

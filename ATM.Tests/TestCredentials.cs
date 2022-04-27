@@ -12,14 +12,14 @@ public class TestCrendials
     {
         var class1 = new Class1();
         var menus = new Menus();
-        Assert.IsTrue(class1.LoginCheck("Marco Andres Barreno", "233702"), menus.username = ("Marco Andres Barreno"), menus.PINCode = ("233702"));
+        Assert.IsTrue(class1.LoginCheck("Marco Andres Barreno", "233702", "Marco Andres Barreno", "233702"));
     }
     [Test]
     public void TestFailedCredentials()
     {
         var class1 = new Class1();
         var menus = new Menus();
-        Assert.IsTrue(class1.LoginCheck("Marco Barreno", "2337"), menus.username = ("Marco Barreno"), menus.PINCode = ("2337"));
+        Assert.IsTrue(class1.LoginCheck("Marco Barreno", "2337", "Marco Andres Barreno", "233702"));
     }
    
 }
